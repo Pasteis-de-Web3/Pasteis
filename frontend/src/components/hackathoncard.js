@@ -19,7 +19,7 @@ export default class HackathonCard extends React.Component {
         const imageStyle = {
             width: '300px',
             maxHeight: '100%',
-            margin: 'auto',
+            marginRight: 'auto',
             display: 'block',
         };
 
@@ -41,6 +41,8 @@ export default class HackathonCard extends React.Component {
                     backgroundColor: 'lightgrey',
                     borderRadius: '10px',
                     boxShadow: this.state.isHovering ? '3px 3px  #484848' : '',
+                    maxWidth: '60%',
+                    display: 'flex',
                 }}
                 onMouseEnter={() => this.setHovering(true)}
                 onMouseLeave={() => this.setHovering(false)}
