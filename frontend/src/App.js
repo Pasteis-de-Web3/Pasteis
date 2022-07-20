@@ -9,31 +9,27 @@ import {
 } from "react-router-dom"
 import About from "./pages/about"
 import Hackathon from './pages/hackathon'
-
-
-const Menu = () => {
-  const padding = {
-    paddingRight: 5
-  }
-  return (
-    <div>
-      <Link style={padding} to="/">home</Link>
-      <Link style={padding} to="/about">about</Link>
-    </div>
-  )
-}
-
+import Landing from './pages/landing'
 
 const App = () => {
+
+  const connect_wallet = async () => {
+    const { ethereum } = window;
+    try {
+      await ethereum.request({ method: 'eth_requestAccounts' });
+    } catch (error) {
+      console.error(error);
+    }
+
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    console.log(accounts[0])
+  }
   
   return (
     <div>
-      <h1>Pasteis 🍮</h1>
-      
       <Router>
-        <Menu />
         <Routes>
-          <Route exact path="/" element={<About/>}/>
+          <Route exact path="/" element={<Landing connect_wallet={connect_wallet}/>}/>
           <Route exact path="/login" element={<About/>}/>
           <Route path="/hackathon/:id" element={<Hackathon/>}/>
           <Route path="*" element={<About/>}/>
