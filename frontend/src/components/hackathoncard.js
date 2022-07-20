@@ -16,47 +16,47 @@ export default class HackathonCard extends React.Component {
     render() {
         const { hackathon } = this.props;
 
+        const parentStyle = {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '50%',
+            margin: 'auto',
+        };
+
         const imageStyle = {
-            width: '300px',
-            maxHeight: '100%',
-            marginRight: 'auto',
-            display: 'block',
+            maxWidth: '40%',
+            height: '300px',
+            float: 'left',
+        };
+
+        const textDivStyle = {
+            width: '50%',
+            float: 'right',
         };
 
         const titleStyle = {
             fontSize: '20px',
             fontWeight: 'bold',
-            margin: '10px',
         };
-
         const descriptionStyle = {
             fontSize: '15px',
-            margin: '10px',
+            marginTop: '5px',
         };
 
         return (
             <div
-                style={{
-                    margin: '10px',
-                    backgroundColor: 'lightgrey',
-                    borderRadius: '10px',
-                    boxShadow: this.state.isHovering ? '3px 3px  #484848' : '',
-                    maxWidth: '60%',
-                    display: 'flex',
-                }}
+                style={parentStyle}
                 onMouseEnter={() => this.setHovering(true)}
                 onMouseLeave={() => this.setHovering(false)}
             >
                 <img
                     src={hackathon.image}
                     alt="hackathon-image"
-                    style={{
-                        ...imageStyle,
-                        float: 'left',
-                        borderRadius: '10px',
-                    }}
+                    style={imageStyle}
                 />
-                <div style={{ float: 'right', width: '500px' }}>
+                <div style={{ textDivStyle }}>
                     <p style={titleStyle}>{hackathon.title}</p>
                     <p style={descriptionStyle}>{hackathon.description}</p>
                 </div>
