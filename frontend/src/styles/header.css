@@ -1,0 +1,17 @@
+.header.space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.header.textStyle {
+    font-family: 'Roboto Mono', monospace;
+    font-style: monospace;
+    color: black;
+    text-decoration: none;
+}
+
+.header {
+    margin: 10px;
+}
