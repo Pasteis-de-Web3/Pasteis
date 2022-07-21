@@ -20,20 +20,26 @@ export default class HackathonCard extends React.Component {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
-            width: '50%',
-            margin: 'auto',
+            width: '60%',
+            justifyContent: 'flex-start',
+            borderRadius: 10,
+            border: '2px solid rgba(0, 0, 0, 0.05)',
+            margin: 10
         };
 
         const imageStyle = {
-            maxWidth: '40%',
-            height: '300px',
-            float: 'left',
+            height: 'auto',
+            width: '300px',
+            borderRadius: "10px 0px 0px 10px"  /* top left, top right, bottom right, bottom left */
         };
 
         const textDivStyle = {
-            width: '50%',
-            float: 'right',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            alignSelf: 'flex-start',
+            flexGrow: 1, // fill the remaining space
         };
 
         const titleStyle = {
@@ -53,10 +59,10 @@ export default class HackathonCard extends React.Component {
             >
                 <img
                     src={hackathon.image}
-                    alt="hackathon-image"
+                    alt=""
                     style={imageStyle}
                 />
-                <div style={{ textDivStyle }}>
+                <div style={textDivStyle}>
                     <p style={titleStyle}>{hackathon.title}</p>
                     <p style={descriptionStyle}>{hackathon.description}</p>
                 </div>
