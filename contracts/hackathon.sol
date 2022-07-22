@@ -13,6 +13,7 @@ contract Hackathon{
     bool hackOpen;
     uint _start;
     uint _end;
+    uint256 prizeAmount;
 
     address payable public winner;
 
@@ -39,7 +40,7 @@ contract Hackathon{
         hackID = HID;
         hackathonOwner = msg.sender;
         hackOpen = true;
-        fundHack(amount);
+        prizeAmount = amount;
         //set timer
         _start = block.timestamp;
         _end = _duration + _start;
@@ -47,10 +48,11 @@ contract Hackathon{
 
     }
 
+
     //Organizer:
     //frontend calls to add funds to hackthon
     function fundHack(uint256 amount) public payable{
-        amount = amount * 10**18;        
+        prizeAmount = prizeAmount + amount * 10**18;        
         require(msg.sender.balance >= amount, "Pasteis: insufficient funds.");
         require(msg.value == amount, "Pasteis: Unmatching funds.");
     }
@@ -60,6 +62,7 @@ contract Hackathon{
     function submission(address hacker, bytes32 proposalName ) public{
         if(block.timestamp >= _end){
             hackOpen = false;
+
         }
         require(hackOpen == true, "Pasteis: Hackathon is closed.");
 
@@ -80,8 +83,6 @@ contract Hackathon{
     }
 
     //Voting //frontend calls
-
-
     /// Give your vote (including votes delegated to you)
     /// to proposal `proposals[proposal].name`.
     function vote(uint proposal) external {
@@ -97,10 +98,16 @@ contract Hackathon{
         proposals[proposal].voteCount += sender.weight;
     }
 
+    //fund winner
+    function fundWinner() public {
+        Voter storage sender = hackers[hackathonOwner];
+        require(sender.voted, "Organizer needs to vote.");
+        winnerAddress().transfer(prizeAmount);
+
+    }
 
     //helper functions
-
-        /// @dev Computes the winning proposal taking all
+    /// @dev Computes the winning proposal taking all
     /// previous votes into account.
     function winningProposal() public view returns (uint winningProposal_)
     {
@@ -112,19 +119,20 @@ contract Hackathon{
             }
         }
     }
+    
 
     // Calls winningProposal() function to get the index
     // of the winner contained in the proposals array and then
     // returns the name of the winner proposal
-    function winnerName() external view returns (bytes32 winnerName_)
+    function winnerName() public view returns (bytes32 winnerName_)
     {
         winnerName_ = proposals[winningProposal()].name;
     }
 
     // returns the addree of the winner
-    function winnerAddress() external view returns (address winnerAddress_)
+    function winnerAddress() public view returns (address payable winnerAddress_)
     {
-        winnerAddress_ = proposals[winningProposal()].owner;
+         winnerAddress_ = payable(proposals[winningProposal()].owner);
     }
 
 
