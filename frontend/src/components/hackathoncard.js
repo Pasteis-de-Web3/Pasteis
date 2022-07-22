@@ -82,6 +82,9 @@ export default class HackathonCard extends React.Component {
                 style={this.state.isHovering ? { ...parentStyle, ...hoverStyle } : parentStyle}
                 onMouseEnter={() => this.setHovering(true)}
                 onMouseLeave={() => this.setHovering(false)}
+                onClick={() => {
+                    window.location.href = `/hackathon/${hackathon.id}`;
+                }}
             >
                 <img
                     src={hackathon.image}
@@ -96,6 +99,7 @@ export default class HackathonCard extends React.Component {
                     <p style={dateStyle}>{parse_date(hackathon.start_date)} - {parse_date(hackathon.end_date)}</p>
                     <p>{hackathon.prizeSum} in prizes</p>
                 </div>
+                {/* </Link> */}
             </div>
         );
     }

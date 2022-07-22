@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Header from '../components/header';
 import HackathonCard from '../components/hackathoncard';
 
+import { getHackathons, getSignedUpHackathons } from '../mock/hackathons.js';
+
 const Home = () => {
     const header_items = [
         { content: 'Home', link: '/home', selected: true },
@@ -11,60 +13,24 @@ const Home = () => {
         { content: 'Username', link: '#' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
     ];
 
-    const enrolled_hackathons = [
-        {
-            image: 'https://images.unsplash.com/photo-1552799446-159ba9523315?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-            title: 'Sample hackathon',
-            description: 'This is a sample hackathon',
-            start_date: 1658318400,
-            end_date: 1658491200,
-            prizeSum: "$1M ETH",
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1483825366482-1265f6ea9bc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-            title: "Sample hackathon with a very long title that is so massive it won't fit very well",
-            description:
-                "This is a sample hackathon with also a description so huge that it is expected to be causing troubles in the interface. I don't know if we should be actually caring much about this but i think it would be nice to make it look good",
-            start_date: 1658318400,
-            end_date: 1658491200,
-            prizeSum: "$1M ETH",
-        },
-    ]
+    let [enrolled_hackathons, setEnrolledHackathons] = useState([]);
+    let [hackathon_stub, setHackathonStub] = useState([]);
 
-    const hackathon_stub = [
-        {
-            image: 'https://forkast.news/wp-content/uploads/2021/12/polygon-1260x709.jpg',
-            title: 'Polygon hackathon',
-            description: 'This is a sample hackathon',
-            start_date: 1658318400,
-            end_date: 1658491200,
-            prizeSum: "$1M ETH",
-        },
-        {
-            image: 'https://protocol.ai/images/og-default.jpg',
-            title: 'ProtocolAI hackathon',
-            description: 'This is a sample hackathon',
-            start_date: 1658318400,
-            end_date: 1658491200,
-            prizeSum: "$1M ETH",
-        },
-        {
-            image: 'https://www.opservices.com.br/wp-content/uploads/2017/01/Hackathon.png',
-            title: 'Jayee\'s hackathon',
-            description: 'This is a sample hackathon',
-            start_date: 1658318400,
-            end_date: 1658491200,
-            prizeSum: "$1M ETH",
-        },
-        {
-            image: 'https://www.opservices.com.br/wp-content/uploads/2017/01/Hackathon.png',
-            title: 'Evy\'s hackathon',
-            description: 'This is a sample hackathon',
-            start_date: 1658318400,
-            end_date: 1658491200,
-            prizeSum: "$1M ETH",
-        },
-    ];
+    getHackathons().then((hackathons) => {
+        console.log(hackathons);
+        setHackathonStub(hackathons);
+    }).catch((err) => {
+        console.log(err);
+    })
+
+    getSignedUpHackathons().then((hackathons) => {
+        console.log(hackathons);
+        setEnrolledHackathons(hackathons);
+    }).catch((err) => {
+        console.log(err);
+    })
+
+
 
     const listStyle = {
         display: 'flex',
@@ -105,6 +71,11 @@ const Home = () => {
         setSearchText(event.target.value);
     }
 
+    // generate set with ids of enrolled hackathons
+    const enrolled_hackathon_ids = new Set(enrolled_hackathons.map((hackathon) => {
+        return hackathon.id;
+    }))
+
     let findHackathons;
     if (searchText == '') {
         findHackathons = hackathon_stub;
@@ -113,6 +84,10 @@ const Home = () => {
             return hackathon.title.toLowerCase().includes(searchText.toLowerCase());
         });
     }
+
+    const newHackathons = findHackathons.filter((hackathon) => {
+        return !enrolled_hackathon_ids.has(hackathon.id);
+    })
 
     const notFoundText = {
         fontSize: '18px',
@@ -131,8 +106,8 @@ const Home = () => {
                 <p style={titleStyle}>Find more hackathons</p>
                 <input style={inputStyle} placeholder="Search for hackathon name" onChange={updateText} />
                 {
-                    findHackathons.length != 0 ?
-                        findHackathons.map((hackathon, idx) => (
+                    newHackathons.length != 0 ?
+                        newHackathons.map((hackathon, idx) => (
                             <HackathonCard hackathon={hackathon} key={idx} />
                         )) : <p style={notFoundText}>No hackathons found with this name</p>
                 }
