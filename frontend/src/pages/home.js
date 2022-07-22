@@ -7,7 +7,7 @@ const Home = () => {
     const [walletId, setWalletId] = useState(undefined);
 
     const header_items = [
-        { content: 'Home', link: '/home' },
+        { content: 'Home', link: '/home', selected: true },
         { content: 'Explore', link: '#' },
         { content: 'About', link: '/about' },
         { content: 'Username', link: '#' }, // TODO we need to add the circle with the avatar here. can simply be put in the content

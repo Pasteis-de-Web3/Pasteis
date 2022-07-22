@@ -15,13 +15,14 @@ export default class Header extends React.Component {
                                 key={idx}
                                 className="header textStyle"
                                 to={option.link}
+                                style={{ textDecoration: option.selected ? 'underline' : 'none' }}
                             >
                                 {option.content}
                             </Link>
                         );
                     })}
                 </div>
-            </div>
+            </div >
         );
     }
 }
