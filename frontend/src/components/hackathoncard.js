@@ -16,6 +16,15 @@ export default class HackathonCard extends React.Component {
     render() {
         const { hackathon } = this.props;
 
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const parse_date = (timestamp) => {
+            const date = new Date(timestamp * 1000);
+            let day = date.getDate();
+            let month = months[date.getMonth()];
+
+            return `${day} ${month}`;
+        }
+
         const parentStyle = {
             display: 'flex',
             flexDirection: 'row',
@@ -25,6 +34,12 @@ export default class HackathonCard extends React.Component {
             borderRadius: 10,
             border: '2px solid rgba(0, 0, 0, 0.05)',
             margin: 10
+        };
+
+        const hoverStyle = {
+            boxShadow: '1px 3px 10px #aba79d',
+            transition: 'box-shadow 0.3s',
+            cursor: 'pointer',
         };
 
         const imageStyle = {
@@ -51,9 +66,20 @@ export default class HackathonCard extends React.Component {
             marginTop: '5px',
         };
 
+        const dateStyle = {
+            backgroundColor: '#23A196',
+            color: 'white',
+            borderRadius: '50px',
+            padding: '5px 15px 5px 15px',
+        }
+
+        const metadataStyle = {
+            fontSize: '12px'
+        }
+
         return (
             <div
-                style={parentStyle}
+                style={this.state.isHovering ? { ...parentStyle, ...hoverStyle } : parentStyle}
                 onMouseEnter={() => this.setHovering(true)}
                 onMouseLeave={() => this.setHovering(false)}
             >
@@ -65,6 +91,10 @@ export default class HackathonCard extends React.Component {
                 <div style={textDivStyle}>
                     <p style={titleStyle}>{hackathon.title}</p>
                     <p style={descriptionStyle}>{hackathon.description}</p>
+                </div>
+                <div style={metadataStyle}>
+                    <p style={dateStyle}>{parse_date(hackathon.start_date)} - {parse_date(hackathon.end_date)}</p>
+                    <p>{hackathon.prizeSum} in prizes</p>
                 </div>
             </div>
         );
