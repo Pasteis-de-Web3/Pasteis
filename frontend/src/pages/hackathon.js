@@ -4,9 +4,54 @@ import {
 } from "react-router-dom"
 import HackathonBadge from '../components/hackathonbadge'
 
-import HackathonCard from '../components/hackathoncard'
 import Header from '../components/header'
-import { getHackathon, getTeam } from '../mock/hackathons.js'
+import Sticker from '../components/sticker'
+import { getHackathon, getTeam, getAnnouncements } from '../mock/hackathons.js'
+
+const ScheduleSubpage = (props) => {
+    const timelineStyle = {
+
+    }
+
+    const announcementsStyle = {
+
+    }
+
+    const [announcements, setAnnouncements] = useState([])
+    getAnnouncements(props.pageid).then((announcements) => {
+        setAnnouncements(announcements)
+    })
+
+    return (
+        <div>
+            <div style={timelineStyle}>Timeline</div>
+            <div style={announcementsStyle}>
+                {
+                    announcements.map((announcement, index) => {
+                        return (
+                            <Sticker
+                                title={announcement.title}
+                                description={announcement.description}
+                                date={announcement.date}
+                            />
+                        )
+                    })
+                }
+            </div>
+        </div>);
+}
+
+const PrizeSubpage = () => {
+    return <p>Prize</p>
+}
+
+const FindTeamSubpage = () => {
+    return <p>Find Team</p>
+}
+
+const BrainstormSubpage = () => {
+    return <p>Brainstorm</p>
+}
 
 const Hackathon = () => {
     const id = useParams().id
@@ -64,15 +109,15 @@ const Hackathon = () => {
     }
 
     const side_items = [
-        { content: 'Schedule', subpage: <p>Schedule</p> },
-        { content: 'Prizes', subpage: <p>Prizes</p> },
-        { content: 'Find team', subpage: <p>Find team</p> },
-        { content: 'Brainstorm', subpage: <p>Brainstorm</p> },
+        { content: 'Schedule', subpage: <ScheduleSubpage pageid={id} /> },
+        { content: 'Prizes', subpage: <PrizeSubpage /> },
+        { content: 'Find team', subpage: <FindTeamSubpage /> },
+        { content: 'Brainstorm', subpage: <BrainstormSubpage /> },
     ]
 
     const [selectedTab, setSelectedTab] = useState(0)
 
-    const select =  (id) => {
+    const select = (id) => {
         setSelectedTab(id)
     }
 
@@ -94,7 +139,7 @@ const Hackathon = () => {
                                 }
                             </div>
                         </div>
-                        
+
                         <div style={rightSection}>
                             {
                                 side_items[selectedTab].subpage

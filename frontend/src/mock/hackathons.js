@@ -7,6 +7,14 @@ let hackathons = [
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
+        announcements: [
+            {
+                id: 0,
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
+                date: 1658318400,
+            },
+        ]
     },
     {
         id: 1,
@@ -17,6 +25,14 @@ let hackathons = [
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
+        announcements: [
+            {
+                id: 0,
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. ',
+                date: 1658318400,
+            },
+        ],
     },
     {
         id: 2,
@@ -26,6 +42,14 @@ let hackathons = [
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
+        announcements: [
+            {
+                id: 0,
+                title: 'Sample announcement',
+                description: 'This is a sample announcement',
+                date: 1658318400,
+            },
+        ],
     },
     {
         id: 3,
@@ -35,6 +59,14 @@ let hackathons = [
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
+        announcements: [
+            {
+                id: 0,
+                title: 'Sample announcement',
+                description: 'This is a sample announcement',
+                date: 1658318400,
+            },
+        ],
     },
     {
         id: 4,
@@ -44,6 +76,14 @@ let hackathons = [
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
+        announcements: [
+            {
+                id: 0,
+                title: 'Sample announcement',
+                description: 'This is a sample announcement',
+                date: 1658318400,
+            },
+        ],
     },
     {
         id: 5,
@@ -53,6 +93,14 @@ let hackathons = [
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
+        announcements: [
+            {
+                id: 0,
+                title: 'Sample announcement',
+                description: 'This is a sample announcement',
+                date: 1658318400,
+            },
+        ],
     },
 ]
 
@@ -87,11 +135,18 @@ const getHackathon = async (id) => {
 const getTeam = (id) => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve((Math.floor(Math.random() * Math.pow(2,16))).toString(16));
+            resolve((Math.floor(Math.random() * Math.pow(2, 16))).toString(16));
         }, 300);
 
     })
 }
 
+const getAnnouncements = (hack_id) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(hackathons[hack_id].announcements);
+        }, 300);
+    });
+}
 
-export { getHackathons, getSignedUpHackathons, getHackathon, getTeam };
+export { getHackathons, getSignedUpHackathons, getHackathon, getTeam, getAnnouncements };

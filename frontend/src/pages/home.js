@@ -42,7 +42,7 @@ const Home = () => {
     }
 
     let myHackathons;
-    if (enrolled_hackathons.length == 0) {
+    if (enrolled_hackathons.length === 0) {
         myHackathons = <p>You haven't signed up for any hackathons yet</p>
     } else {
         myHackathons = enrolled_hackathons.map((hackathon, index) => {
@@ -77,7 +77,7 @@ const Home = () => {
     }))
 
     let findHackathons;
-    if (searchText == '') {
+    if (searchText === '') {
         findHackathons = hackathon_stub;
     } else {
         findHackathons = hackathon_stub.filter((hackathon) => {
@@ -106,7 +106,7 @@ const Home = () => {
                 <p style={titleStyle}>Find more hackathons</p>
                 <input style={inputStyle} placeholder="Search for hackathon name" onChange={updateText} />
                 {
-                    newHackathons.length != 0 ?
+                    newHackathons.length !== 0 ?
                         newHackathons.map((hackathon, idx) => (
                             <HackathonCard hackathon={hackathon} key={idx} />
                         )) : <p style={notFoundText}>No hackathons found with this name</p>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { parse_date } from '../utils';
 
 export default class HackathonCard extends React.Component {
     constructor() {
@@ -16,14 +17,6 @@ export default class HackathonCard extends React.Component {
     render() {
         const { hackathon } = this.props;
 
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        const parse_date = (timestamp) => {
-            const date = new Date(timestamp * 1000);
-            let day = date.getDate();
-            let month = months[date.getMonth()];
-
-            return `${day} ${month}`;
-        }
 
         const parentStyle = {
             display: 'flex',
