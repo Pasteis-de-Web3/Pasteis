@@ -89,6 +89,7 @@ contract Hackathon{
         Voter storage sender = hackers[msg.sender];
         require(sender.weight != 0, "Has no right to vote");
         require(!sender.voted, "Already voted.");
+        require(msg.sender != proposals[proposal].owner, "Cannot vote for yourself!");
         sender.voted = true;
         sender.vote = proposal;
 
