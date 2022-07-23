@@ -96,14 +96,13 @@ contract HackathonFactory{
     function create(
         uint256 amount,
         uint duration_,
-        string memory _hackathonAdd,
         string memory _hackathon_name,
         string memory _description,
         string memory _organizer,
         string memory _total_prize,
         string memory _date
-        ) 
-        public payable returns(address, uint){
+        ) public payable returns(address, uint){
+        
         pAmount = amount * 10**18;
         id = hackathons.length;
         require(msg.sender.balance >= amount, "HackathonFactory: insufficient funds.");
@@ -126,7 +125,7 @@ contract HackathonFactory{
             _hackathonTable,
             " (id, hackathonAdd, hackathon_name, description, organizer, total_prize, date) VALUES (",
             Strings.toString(id),
-            _hackathonAdd,
+            Strings.toHexString(uint160(address(newhackathon)), 32),
             _hackathon_name,
             _description,
             _organizer,
@@ -168,9 +167,8 @@ contract HackathonFactory{
             )
          );
 
-    return true;
-}
-    
+        return true;
+    }
 
 //------------HELPER FUNCTIONS------------------------
 
