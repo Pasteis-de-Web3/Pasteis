@@ -4,14 +4,22 @@ import Header from '../components/header';
 import HackathonCard from '../components/hackathoncard';
 
 import { getSignedUpHackathons } from '../mock/hackathons.js';
+import { getWallet } from '../utils';
 
 const Home = () => {
+
+    const [walletAddress, setWallet] = useState(null);
+
+    useEffect(() => {
+        getWallet().then(walletId => setWallet(walletId));
+    }, [])
+
     const header_items = [
         { content: 'Home', link: '/home', selected: true },
         { content: 'Explore', link: '/explore' },
         { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: `/user/${walletAddress}` },
     ];
 
     let [enrolled_hackathons, setEnrolledHackathons] = useState([]);
@@ -37,7 +45,7 @@ const Home = () => {
     }
 
     const titleStyle = {
-        fontSize: '36px',
+        fontSize: '28px',
     }
 
     const overallLayout = {
@@ -58,6 +66,7 @@ const Home = () => {
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
+        fontSize: '22px',
     }
 
     const listStyle = {
@@ -70,25 +79,6 @@ const Home = () => {
         margin: 'auto',
     }
 
-    const [walletAddress, setWallet] = useState(null);
-
-    const getWallet = async () => {
-        const { ethereum } = window;
-
-        await ethereum.request({ method: 'eth_requestAccounts' })
-            .then((accounts) => {
-                console.log(accounts[0]);
-                setWallet(accounts[0]);
-            }).catch((err) => {
-                console.log(err);
-            })
-    }
-
-
-    useEffect(() => {
-        getWallet()
-    }, [])
-
     return (
         <>
             <Header options={header_items} />
@@ -97,7 +87,7 @@ const Home = () => {
                 <div style={topBar}>
                     <img style={avatarStyle} src="https://images.unsplash.com/photo-1548041347-390744c58da6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1392&q=80" />
                     <p>{walletAddress}</p>
-                    <p>Welcome back!</p>
+                    <p style={{fontSize: '36px'}}>Welcome back!</p>
                 </div>
 
                 <div style={listStyle}>

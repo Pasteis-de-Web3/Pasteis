@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../components/header';
 import { connect } from "@tableland/sdk";
+import { getWallet } from '../utils';
 
 const Create = () => {
+
+    const [walletAddress, setWallet] = useState(null);
+
+    useEffect(() => {
+        getWallet().then(walletId => setWallet(walletId));
+    }, [])
+
     const header_items = [
         { content: 'Home', link: '/home' },
         { content: 'Explore', link: '/explore' },
         { content: 'Create', link: '/create', selected: true },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: `/user/${walletAddress}` },
     ];
 
     const listStyle = {
@@ -32,7 +40,7 @@ const Create = () => {
         border: 'none',
         borderRadius: '5px',
         fontSize: '18px',
-        paddingLeft: '20px',
+        padding: '10px 20px',
     }
 
     const addPrizeStyle = {

@@ -7,7 +7,15 @@ const parse_date = (timestamp) => {
     return `${day} ${month}`;
 }
 
+const getWallet = async () => {
+    const { ethereum } = window;
+
+    return ethereum.request({ method: 'eth_requestAccounts' })
+        .then((accounts) =>
+            accounts[0]
+        )
+}
 
 export {
-    parse_date
+    parse_date, getWallet
 }

@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../components/header';
 import HackathonCard from '../components/hackathoncard';
 
 import { getHackathons, getSignedUpHackathons } from '../mock/hackathons.js';
+import { getWallet } from '../utils';
 
 const Explore = () => {
+
+    const [walletAddress, setWallet] = useState(null);
+
+    useEffect(() => {
+        getWallet().then(walletId => setWallet(walletId));
+    }, [])
+
     const header_items = [
         { content: 'Home', link: '/home' },
         { content: 'Explore', link: '/explore', selected: true },
         { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: `/user/${walletAddress}` },
     ];
-
     let [enrolled_hackathons, setEnrolledHackathons] = useState([]);
     let [hackathon_stub, setHackathonStub] = useState([]);
 

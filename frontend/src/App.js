@@ -8,6 +8,10 @@ import Explore from './pages/explore';
 import Create from './pages/create';
 import User from './pages/user';
 
+import 'font-awesome/css/font-awesome.min.css';
+
+
+
 const App = () => {
     const [ethAddress, setEthAddress] = useState("");
 
@@ -32,11 +36,11 @@ const App = () => {
                     path="/"
                     element={<Landing connect_wallet={connect_wallet} />}
                 />
-                <Route exact path="/home" element={<Home />} /> 
-                <Route exact path="/explore" element={<Explore/>} />
+                <Route exact path="/home" element={<Home />} />
+                <Route exact path="/explore" element={<Explore />} />
                 <Route exact path="/about" element={<About />} />
-                <Route exact path="/create"  element={<Create/>}/>
-                <Route exact path="/user"  element={<User/>}/>
+                <Route exact path="/create" element={<Create />} />
+                <Route exact path="/user/:id" element={<User />} />
                 <Route path="/hackathon/:id" element={<Hackathon />} />
                 <Route path="*" element={<About />} />
             </Routes>

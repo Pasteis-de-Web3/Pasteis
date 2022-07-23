@@ -8,7 +8,7 @@ import Header from '../components/header'
 import Sticker from '../components/sticker'
 import Timeline from '../components/timeline'
 import { getHackathon, getTeam, getAnnouncements, getPrizes, getMoments } from '../mock/hackathons.js'
-import { parse_date } from '../utils'
+import { parse_date, getWallet } from '../utils'
 
 const ScheduleSubpage = (props) => {
     const timelineStyle = {
@@ -149,16 +149,16 @@ const SubmitSubpage = () => {
                             Project description
                         </td>
                         <td colSpan="10">
-                            <textarea style={{ ...inputStyle, fontSize: '14px' }} onChange={(e) => setDescription(e.target.value)} placeholder="e.g. Pasteis is a project with different scopes..." rows="8"/>
+                            <textarea style={{ ...inputStyle, fontSize: '14px' }} onChange={(e) => setDescription(e.target.value)} placeholder="e.g. Pasteis is a project with different scopes..." rows="8" />
                         </td>
                     </tr>
                     <tr>
                         <td colSpan="1" style={leftSideLabelStyle}>
                             File location
                         </td>
-                        <td colSpan="10" style={{textAlign: 'left'}}>
+                        <td colSpan="10" style={{ textAlign: 'left' }}>
                             <input type="file" style={inputStyle} name="upload" onChange={(e) => setFile(e.target.value)} />
-                            </td>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -184,14 +184,20 @@ const Hackathon = () => {
         })
     }, [])
 
+
+    const [walletAddress, setWallet] = useState(null);
+
+    useEffect(() => {
+        getWallet().then(walletId => setWallet(walletId));
+    }, [])
+
     const header_items = [
         { content: 'Home', link: '/home' },
         { content: 'Explore', link: '/explore', selected: true },
         { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: `/user/${walletAddress}` },
     ];
-
     // Left bar should be slim and work as a second bar
     const leftBar = {
         float: 'left',
