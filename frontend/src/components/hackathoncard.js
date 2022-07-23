@@ -22,11 +22,11 @@ export default class HackathonCard extends React.Component {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            width: '60%',
+            width: '80%',
             justifyContent: 'flex-start',
-            borderRadius: 10,
+            borderRadius: '10px',
             border: '2px solid rgba(0, 0, 0, 0.05)',
-            margin: 10
+            margin: "15px 0"
         };
 
         const hoverStyle = {
@@ -36,38 +36,34 @@ export default class HackathonCard extends React.Component {
         };
 
         const imageStyle = {
-            height: 'auto',
-            width: '300px',
-            borderRadius: "10px 0px 0px 10px"  /* top left, top right, bottom right, bottom left */
+            maxWidth: '30%',
+            borderRadius: "10px 0px 0px 10px"
         };
 
         const textDivStyle = {
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
             alignSelf: 'flex-start',
-            flexGrow: 1, // fill the remaining space
+            flexDirection: 'column',
+            textAlign: 'left',
+            margin: '0 10px'
         };
 
         const titleStyle = {
-            fontSize: '20px',
-            fontWeight: 'bold',
+            fontSize: '24px',
+            margin: '5px 0',
         };
+
         const descriptionStyle = {
-            fontSize: '15px',
-            marginTop: '5px',
+            fontSize: '14px',
+            margin: '10px'
         };
 
         const dateStyle = {
             backgroundColor: '#23A196',
+            borderRadius: '10px',
+            padding: '5px 10px',
             color: 'white',
-            borderRadius: '50px',
-            padding: '5px 15px 5px 15px',
-        }
-
-        const metadataStyle = {
-            fontSize: '12px'
+            margin: '10px',
         }
 
         return (
@@ -85,14 +81,19 @@ export default class HackathonCard extends React.Component {
                     style={imageStyle}
                 />
                 <div style={textDivStyle}>
-                    <p style={titleStyle}>{hackathon.title}</p>
-                    <p style={descriptionStyle}>{hackathon.description}</p>
+                    <label style={titleStyle}>{hackathon.title}</label>
+                    <label style={descriptionStyle}>{hackathon.description}</label>
+
+                    <div style={{
+                        margin: '10px',
+                        width: '100%'
+                    }}>
+                        <label style={dateStyle}>
+                            {parse_date(hackathon.start_date)} - {parse_date(hackathon.end_date)}
+                        </label>
+                        <label>{hackathon.prizeSum} in prizes</label>
+                    </div>
                 </div>
-                <div style={metadataStyle}>
-                    <p style={dateStyle}>{parse_date(hackathon.start_date)} - {parse_date(hackathon.end_date)}</p>
-                    <p>{hackathon.prizeSum} in prizes</p>
-                </div>
-                {/* </Link> */}
             </div>
         );
     }
