@@ -9,12 +9,66 @@ let hackathons = [
         prizeSum: "$1M ETH",
         announcements: [
             {
-                id: 0,
                 title: 'Sample announcement',
                 description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
                 date: 1658318400,
             },
-        ]
+            {
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
+                date: 1658318400,
+            },
+            {
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
+                date: 1658318400,
+            },
+            {
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
+                date: 1658318400,
+            },
+            {
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
+                date: 1658318400,
+            },
+            {
+                title: 'Sample announcement',
+                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
+                date: 1658318400,
+            },
+        ],
+        prizes: [
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+        ],
     },
     {
         id: 1,
@@ -31,6 +85,20 @@ let hackathons = [
                 title: 'Sample announcement',
                 description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. ',
                 date: 1658318400,
+            },
+        ],
+        prizes: [
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
             },
         ],
     },
@@ -50,6 +118,20 @@ let hackathons = [
                 date: 1658318400,
             },
         ],
+        prizes: [
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+        ],
     },
     {
         id: 3,
@@ -65,6 +147,20 @@ let hackathons = [
                 title: 'Sample announcement',
                 description: 'This is a sample announcement',
                 date: 1658318400,
+            },
+        ],
+        prizes: [
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
             },
         ],
     },
@@ -84,6 +180,20 @@ let hackathons = [
                 date: 1658318400,
             },
         ],
+        prizes: [
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+        ],
     },
     {
         id: 5,
@@ -99,6 +209,20 @@ let hackathons = [
                 title: 'Sample announcement',
                 description: 'This is a sample announcement',
                 date: 1658318400,
+            },
+        ],
+        prizes: [
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
+            },
+            {
+                name: 'Sample prize',
+                value: '69 USD',
             },
         ],
     },
@@ -149,4 +273,12 @@ const getAnnouncements = (hack_id) => {
     });
 }
 
-export { getHackathons, getSignedUpHackathons, getHackathon, getTeam, getAnnouncements };
+const getPrizes = (hack_id) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(hackathons[hack_id].prizes);
+        }, 300);
+    });
+}
+
+export { getHackathons, getSignedUpHackathons, getHackathon, getTeam, getAnnouncements, getPrizes };

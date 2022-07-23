@@ -6,14 +6,22 @@ import HackathonBadge from '../components/hackathonbadge'
 
 import Header from '../components/header'
 import Sticker from '../components/sticker'
-import { getHackathon, getTeam, getAnnouncements } from '../mock/hackathons.js'
+import { getHackathon, getTeam, getAnnouncements, getPrizes } from '../mock/hackathons.js'
 
 const ScheduleSubpage = (props) => {
     const timelineStyle = {
-
+        float: 'left',
+        width: '45%',
+        marginLeft: '5%',
+        display: 'flex',
+        flexDirection: 'column',
     }
 
     const announcementsStyle = {
+        float: 'right',
+        width: '45%',
+        display: 'flex',
+        flexDirection: 'column',
 
     }
 
@@ -30,9 +38,13 @@ const ScheduleSubpage = (props) => {
                     announcements.map((announcement, index) => {
                         return (
                             <Sticker
+                                style={{
+                                    width: "400px",
+                                }}
                                 title={announcement.title}
                                 description={announcement.description}
                                 date={announcement.date}
+                                key={index}
                             />
                         )
                     })
@@ -41,8 +53,39 @@ const ScheduleSubpage = (props) => {
         </div>);
 }
 
-const PrizeSubpage = () => {
-    return <p>Prize</p>
+const PrizeSubpage = (props) => {
+    const [hack_prizes, setPrizes] = useState([])
+    getPrizes(props.pageid).then((p) => {
+        setPrizes(p)
+    })
+
+    const prizeGrid = {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    }
+
+    return (
+        <div style={prizeGrid}>
+            {
+                hack_prizes.map((prize, index) => {
+                    return (
+                        <Sticker
+                            style={{
+                                width: "200px",
+                                margin: '10px',
+                                backgroundColor: '#f5f5f5',
+                            }}
+                            title={prize.name}
+                            description={prize.value}
+                            key={index}
+                        />
+                    )
+                })
+            }
+        </div>
+    );
 }
 
 const FindTeamSubpage = () => {
@@ -110,9 +153,9 @@ const Hackathon = () => {
 
     const side_items = [
         { content: 'Schedule', subpage: <ScheduleSubpage pageid={id} /> },
-        { content: 'Prizes', subpage: <PrizeSubpage /> },
-        { content: 'Find team', subpage: <FindTeamSubpage /> },
-        { content: 'Brainstorm', subpage: <BrainstormSubpage /> },
+        { content: 'Prizes', subpage: <PrizeSubpage pageid={id} /> },
+        { content: 'Find team', subpage: <FindTeamSubpage pageid={id} /> },
+        { content: 'Brainstorm', subpage: <BrainstormSubpage pageid={id} /> },
     ]
 
     const [selectedTab, setSelectedTab] = useState(0)
@@ -134,7 +177,17 @@ const Hackathon = () => {
                             <div style={tabsStyle}>
                                 {
                                     side_items.map((item, index) => {
-                                        return <p key={index} onClick={() => select(index)} >{item.content}</p>
+                                        return <p
+                                            key={index}
+                                            onClick={() => select(index)}
+                                            style={selectedTab === index ? {
+                                                //underline
+                                                textDecoration: 'underline',
+
+                                            } : {}}
+                                        >
+                                            {item.content}
+                                        </p>
                                     })
                                 }
                             </div>
