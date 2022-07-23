@@ -43,30 +43,37 @@ let hackathons = [
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
     },
@@ -91,14 +98,17 @@ let hackathons = [
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
     },
@@ -122,14 +132,17 @@ let hackathons = [
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
     },
@@ -153,14 +166,17 @@ let hackathons = [
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
     },
@@ -184,14 +200,17 @@ let hackathons = [
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
     },
@@ -215,14 +234,17 @@ let hackathons = [
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
             {
                 name: 'Sample prize',
                 value: '69 USD',
+                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
     },

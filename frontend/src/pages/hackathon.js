@@ -7,6 +7,7 @@ import HackathonBadge from '../components/hackathonbadge'
 import Header from '../components/header'
 import Sticker from '../components/sticker'
 import { getHackathon, getTeam, getAnnouncements, getPrizes } from '../mock/hackathons.js'
+import { parse_date } from '../utils'
 
 const ScheduleSubpage = (props) => {
     const timelineStyle = {
@@ -38,12 +39,9 @@ const ScheduleSubpage = (props) => {
                     announcements.map((announcement, index) => {
                         return (
                             <Sticker
-                                style={{
-                                    width: "400px",
-                                }}
                                 title={announcement.title}
-                                description={announcement.description}
-                                date={announcement.date}
+                                content={announcement.description}
+                                smallText={parse_date(announcement.date)}
                                 key={index}
                             />
                         )
@@ -72,13 +70,9 @@ const PrizeSubpage = (props) => {
                 hack_prizes.map((prize, index) => {
                     return (
                         <Sticker
-                            style={{
-                                width: "200px",
-                                margin: '10px',
-                                backgroundColor: '#f5f5f5',
-                            }}
                             title={prize.name}
-                            description={prize.value}
+                            content={prize.content}
+                            smallText={prize.value}
                             key={index}
                         />
                     )
@@ -115,9 +109,10 @@ const Hackathon = () => {
 
     const header_items = [
         { content: 'Home', link: '/home' },
-        { content: 'Explore', link: '#' },
+        { content: 'Explore', link: '/explore', selected: true },
+        { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '#' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
     ];
 
     // Left bar should be slim and work as a second bar
@@ -137,7 +132,7 @@ const Hackathon = () => {
     }
 
     const submitButtonStyle = {
-        backgroundColor: 'black',
+        backgroundColor: '#30323d',
         color: 'white',
         border: 'none',
         borderRadius: '15px',
@@ -145,6 +140,14 @@ const Hackathon = () => {
         padding: '10px',
         cursor: 'pointer',
         width: '100%',
+    }
+
+    const teamStyle = {
+        backgroundColor: '#ECEAE3',
+        padding: '10px',
+        border: '1px solid #30323d',
+        borderRadius: '10px',
+        textAlign: 'center',
     }
 
     const tabsStyle = {
@@ -172,7 +175,7 @@ const Hackathon = () => {
                     <div>
                         <div style={leftBar}>
                             <HackathonBadge hackathon={hack} />
-                            <p>Team: {team}</p>
+                            <p style={teamStyle}>Team: {team}</p>
                             <button style={submitButtonStyle}>Submit</button>
                             <div style={tabsStyle}>
                                 {

@@ -11,7 +11,7 @@ const Home = () => {
         { content: 'Explore', link: '/explore' },
         { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'User', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
     ];
 
     let [enrolled_hackathons, setEnrolledHackathons] = useState([]);

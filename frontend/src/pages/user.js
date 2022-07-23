@@ -13,9 +13,10 @@ const User = () => {
 
     const header_items = [
         { content: 'Home', link: '/home' },
-        { content: 'Explore', link: '#' },
+        { content: 'Explore', link: '/explore' },
+        { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '#', selected: true }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'Username', link: '/user', selected: true }, // TODO we need to add the circle with the avatar here. can simply be put in the content
     ];
 
     const overallLayout = {
