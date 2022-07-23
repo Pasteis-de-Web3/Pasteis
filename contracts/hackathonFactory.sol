@@ -14,11 +14,10 @@ contract HackathonFactory{
     address[] public hackathons;
     uint id;
     uint256 pAmount;
+    uint256 fees;
+    uint256 totalAmount;
     
     //tableland setups
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
-
     ITablelandTables private _tableland;
     string private _hackathonTable;
     uint256 private _hackathonTableId;
@@ -31,10 +30,13 @@ contract HackathonFactory{
     //announcements
     event newHackathonCreation(uint id, address HackthonAdded);
 
-    constructor(address registry){
+    constructor(){
+
     /* 
       * The Tableland address on your current chain
       */
+      //Tableland Polygon Mumbai Testnet contract
+      address registry = address(0x4b48841d4b32C4650E4ABc117A03FE8B51f38F68); 
       _tableland = ITablelandTables(registry);
 
       /*
@@ -73,7 +75,7 @@ contract HackathonFactory{
           "CREATE TABLE",
 					_tablePrefix,
           Strings.toString(block.chainid),
-          " (hackathonAdd tinytext, projectOwner tinytext, projectName text, description text, projectLink tinytext );"
+          " (hackathonAdd tinytext, projectOwner tinytext, projectName text, description text, projectLink tinytext);"
         )
       );
 
@@ -103,10 +105,14 @@ contract HackathonFactory{
         string memory _date
         ) public payable returns(address, uint){
         
+        //5% of payment amount is collected as process fees
         pAmount = amount * 10**18;
+        fees = (5 * pAmount)/100;
+        totalAmount = fees+ amount;
+
         id = hackathons.length;
         require(msg.sender.balance >= amount, "HackathonFactory: insufficient funds.");
-        require(msg.value == amount, "HackathonFactory: Unmatching funds.");
+        require(msg.value == totalAmount, "HackathonFactory: Unmatching funds.");
 
 
         //create new task and add to the array
@@ -115,7 +121,7 @@ contract HackathonFactory{
         payable(address(newhackathon)).transfer(pAmount);
 
         hackathons.push(address(newhackathon));
-
+        //" (id int, hackathonAdd tinytext, hackathon_name tinytext, description text, organizer tinytext, total_prize int, date tinytext);"
         //add new hackthon to tableland
         _tableland.runSQL(
         address(this),
@@ -124,12 +130,12 @@ contract HackathonFactory{
             "INSERT INTO ",
             _hackathonTable,
             " (id, hackathonAdd, hackathon_name, description, organizer, total_prize, date) VALUES (",
-            Strings.toString(id),
-            Strings.toHexString(uint160(address(newhackathon)), 32),
-            _hackathon_name,
-            _description,
-            _organizer,
-            _total_prize,
+            Strings.toString(id),",",
+            Strings.toHexString(uint160(address(newhackathon)), 32), ",",
+            _hackathon_name, ",",
+            _description,",",
+            _organizer,",",
+            _total_prize,",",
             _date,
              ")" 
              //should be the format below
@@ -144,11 +150,11 @@ contract HackathonFactory{
 
     //add a new row to Tableland
     function AddProject(
-        string calldata _hackathonAddy,
-        string calldata _projectOwner,
-        string calldata _projectName,
-        string calldata _description,
-        string calldata _projectLink) public returns (bool) {
+        string memory _hackathonAddy,
+        string memory _projectOwner,
+        string memory _projectName,
+        string memory _description,
+        string memory _projectLink) public returns (bool) {
          _tableland.runSQL(
              address(this),
             _projectTableId,
@@ -156,10 +162,10 @@ contract HackathonFactory{
                 "INSERT INTO ",
                 _projectTable,
                 " (hackathonAdd, projectOwner, projectName, description, projectLink) VALUES (",
-                _hackathonAddy,
-                _projectOwner,
-                _projectName,
-                _description,
+                _hackathonAddy, ",",
+                _projectOwner,",",
+                _projectName,",",
+                _description,",",
                 _projectLink,
                 ")"
                 //"hackathonAdd, projectOwner, projectName, description, projectLink"
@@ -179,6 +185,6 @@ contract HackathonFactory{
     function getNumDeployedHackathons() public view returns(uint){
         return hackathons.length;
     }
-    
+
     
 }
