@@ -87,7 +87,17 @@ let hackathons = [
             },
             {
                 title: 'Results announcement', timestamp: 1658491200
-            }
+            },{
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            },
         ]
     },
     {
@@ -229,7 +239,7 @@ let hackathons = [
             },
             {
                 title: 'Results announcement', timestamp: 1658491200
-            }
+            },
         ]
     },
     {

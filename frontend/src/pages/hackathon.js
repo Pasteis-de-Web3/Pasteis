@@ -21,7 +21,7 @@ const ScheduleSubpage = (props) => {
 
     const announcementsStyle = {
         float: 'right',
-        width: '70%',
+        width: '65%',
         display: 'flex',
         flexDirection: 'column',
     }
@@ -43,17 +43,17 @@ const ScheduleSubpage = (props) => {
             </div>
             <div style={announcementsStyle}>
                 <h1>Announcements</h1>
-                <div style={{margin: '-30px auto'}}>
+                <div style={{ margin: '-30px auto' }}>
                     {
                         announcements.map((announcement, index) => {
                             return (
-                                <div style={{margin: '30px 0'}}>
-                                <Sticker
-                                    title={announcement.title}
-                                    content={announcement.description}
-                                    smallText={parse_date(announcement.date)}
-                                    key={index}
-                                />
+                                <div style={{ margin: '30px 0' }}>
+                                    <Sticker
+                                        title={announcement.title}
+                                        content={announcement.description}
+                                        smallText={parse_date(announcement.date)}
+                                        key={index}
+                                    />
                                 </div>
                             )
                         })
@@ -102,6 +102,71 @@ const BrainstormSubpage = () => {
     return <p>Brainstorm</p>
 }
 
+const SubmitSubpage = () => {
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [file, setFile] = useState('')
+
+    const inputStyle = {
+        width: '100%',
+        backgroundColor: '#EDEFF2',
+        border: 'none',
+        borderRadius: '5px',
+        fontSize: '18px',
+        padding: '20px 10px'
+    }
+
+    const leftSideLabelStyle = { textAlign: 'right' }
+
+
+    const submitButtonStyle = {
+        backgroundColor: '#30323d',
+        color: 'white',
+        border: 'none',
+        borderRadius: '10px',
+        fontSize: '24px',
+        padding: '10px',
+        cursor: 'pointer'
+    }
+
+    const submit = () => {
+        console.log(name, description, file)
+    }
+
+    return (
+        <div>
+            <h1>Submit your project</h1>
+            <table style={{ width: '90%', margin: '10px', borderSpacing: '20px' }}>
+                <tbody>
+                    <tr>
+                        <td colSpan="1" style={leftSideLabelStyle}>
+                            Project name
+                        </td>
+                        <td colSpan="10"><input style={inputStyle} onChange={(e) => setName(e.target.value)} placeholder="e.g. Pasteis" /></td>
+                    </tr>
+                    <tr>
+                        <td colSpan="1" style={leftSideLabelStyle}>
+                            Project description
+                        </td>
+                        <td colSpan="10">
+                            <textarea style={{ ...inputStyle, fontSize: '14px' }} onChange={(e) => setDescription(e.target.value)} placeholder="e.g. Pasteis is a project with different scopes..." rows="8"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="1" style={leftSideLabelStyle}>
+                            File location
+                        </td>
+                        <td colSpan="10" style={{textAlign: 'left'}}>
+                            <input type="file" name="upload" onChange={(e) => setFile(e.target.value)} />
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onClick={submit} style={submitButtonStyle}>Submit</button>
+        </div>
+    )
+}
+
 const Hackathon = () => {
     const id = useParams().id
 
@@ -143,17 +208,6 @@ const Hackathon = () => {
         textAlign: 'center',
     }
 
-    const submitButtonStyle = {
-        backgroundColor: '#30323d',
-        color: 'white',
-        border: 'none',
-        borderRadius: '15px',
-        fontSize: '32px',
-        padding: '10px',
-        cursor: 'pointer',
-        width: '100%',
-    }
-
     const teamStyle = {
         backgroundColor: '#ECEAE3',
         padding: '10px',
@@ -172,6 +226,7 @@ const Hackathon = () => {
         { content: 'Prizes', subpage: <PrizeSubpage pageid={id} /> },
         { content: 'Find team', subpage: <FindTeamSubpage pageid={id} /> },
         { content: 'Brainstorm', subpage: <BrainstormSubpage pageid={id} /> },
+        { content: 'Submit', subpage: <SubmitSubpage pageid={id} /> },
     ]
 
     const [selectedTab, setSelectedTab] = useState(0)
@@ -189,7 +244,6 @@ const Hackathon = () => {
                         <div style={leftBar}>
                             <HackathonBadge hackathon={hack} />
                             <p style={teamStyle}>Team: {team}</p>
-                            <button style={submitButtonStyle}>Submit</button>
                             <div style={tabsStyle}>
                                 {
                                     side_items.map((item, index) => {
