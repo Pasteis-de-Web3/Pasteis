@@ -8,20 +8,13 @@ import { getHackathons, getSignedUpHackathons } from '../mock/hackathons.js';
 const Home = () => {
     const header_items = [
         { content: 'Home', link: '/home', selected: true },
-        { content: 'Explore', link: '#' },
+        { content: 'Explore', link: '/explore' },
+        { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: '#' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
+        { content: 'User', link: '/user' }, // TODO we need to add the circle with the avatar here. can simply be put in the content
     ];
 
     let [enrolled_hackathons, setEnrolledHackathons] = useState([]);
-    let [hackathon_stub, setHackathonStub] = useState([]);
-
-    getHackathons().then((hackathons) => {
-        console.log(hackathons);
-        setHackathonStub(hackathons);
-    }).catch((err) => {
-        console.log(err);
-    })
 
     getSignedUpHackathons().then((hackathons) => {
         console.log(hackathons);
@@ -30,16 +23,6 @@ const Home = () => {
         console.log(err);
     })
 
-
-
-    const listStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        margin: 'auto',
-        width: '90%',
-        textAlign: 'center',
-    }
 
     let myHackathons;
     if (enrolled_hackathons.length === 0) {
@@ -54,64 +37,79 @@ const Home = () => {
         fontSize: '36px',
     }
 
-    const inputStyle = {
-        width: '50%',
-        marginTop: '-20px',
-        marginBottom: '20px',
-        backgroundColor: '#EDEFF2',
-        border: 'none',
-        borderRadius: '5px',
+    const overallLayout = {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+    }
+
+    const imageStyle = {
+        width: 100,
+        height: 100,
+        borderRadius: 150 / 2,
+        overflow: "hidden",
+        borderWidth: 3,
+    }
+
+    const leftBar = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-start',
         fontSize: '18px',
-        height: '70px',
-        paddingLeft: '70px',
+        padding: '25px',
     }
 
-    const [searchText, setSearchText] = useState('');
-    const updateText = (event) => {
-        setSearchText(event.target.value);
-    }
-
-    // generate set with ids of enrolled hackathons
-    const enrolled_hackathon_ids = new Set(enrolled_hackathons.map((hackathon) => {
-        return hackathon.id;
-    }))
-
-    let findHackathons;
-    if (searchText === '') {
-        findHackathons = hackathon_stub;
-    } else {
-        findHackathons = hackathon_stub.filter((hackathon) => {
-            return hackathon.title.toLowerCase().includes(searchText.toLowerCase());
-        });
-    }
-
-    const newHackathons = findHackathons.filter((hackathon) => {
-        return !enrolled_hackathon_ids.has(hackathon.id);
-    })
-
-    const notFoundText = {
+    const rightBar = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'flex-start',
         fontSize: '18px',
-        height: '1000px',
+        padding: '25px',
+        backgroundColor: 'red'
     }
+
+    const listStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        margin: 'auto',
+        width: '90%',
+        textAlign: 'center',
+        paddingLeft: "60px",
+        backgroundColor: 'blue'
+    }
+
 
     return (
         <>
             <Header options={header_items} />
-            <div style={listStyle}>
-                <p style={titleStyle}>Your active hackathons</p>
-                {myHackathons}
-            </div>
+            
+            <div style={overallLayout}>
+                <div style={leftBar}>
+                    <img style={imageStyle} src="https://images.unsplash.com/photo-1548041347-390744c58da6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1392&q=80"/>
+                    <p>{"0x22e...3032"}</p>
+                    <p>github</p>
+                    <p>twitter</p>
+                </div>
 
-            <div style={listStyle}>
-                <p style={titleStyle}>Find more hackathons</p>
-                <input style={inputStyle} placeholder="Search for hackathon name" onChange={updateText} />
-                {
-                    newHackathons.length !== 0 ?
-                        newHackathons.map((hackathon, idx) => (
-                            <HackathonCard hackathon={hackathon} key={idx} />
-                        )) : <p style={notFoundText}>No hackathons found with this name</p>
-                }
+                <div style={listStyle}>
+                    <p style={titleStyle}>Your active hackathons</p>
+                    {myHackathons}
+                </div>
+
+                <div style={rightBar}>
+                    <img style={imageStyle} src="https://images.unsplash.com/photo-1548041347-390744c58da6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1392&q=80"/>
+
+                </div>
+
             </div>
+           
         </>
     );
 };

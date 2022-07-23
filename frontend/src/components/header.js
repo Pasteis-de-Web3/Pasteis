@@ -7,7 +7,13 @@ export default class Header extends React.Component {
     render() {
         return (
             <div className="header space">
-                <h2 className="header textStyle">Pasteis🍮</h2>
+                <Link
+                    key='home'
+                    className="header textStyle"
+                    to='/home'
+                >
+                    <h2 className="header textStyle">Pasteis🍮</h2>
+                </Link>
                 <div style={{ paddingRight: 30 }}>
                     {this.props.options.map((option, idx) => {
                         return (
