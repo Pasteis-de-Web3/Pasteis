@@ -17,7 +17,7 @@ const Create = () => {
         { content: 'Explore', link: '/explore' },
         { content: 'Create', link: '/create', selected: true },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: `/user/${walletAddress}` },
+        { content: 'Profile', link: `/user/${walletAddress}` },
     ];
 
     const listStyle = {

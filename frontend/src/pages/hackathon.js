@@ -196,7 +196,7 @@ const Hackathon = () => {
         { content: 'Explore', link: '/explore', selected: true },
         { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: `/user/${walletAddress}` },
+        { content: 'Profile', link: `/user/${walletAddress}` },
     ];
     // Left bar should be slim and work as a second bar
     const leftBar = {

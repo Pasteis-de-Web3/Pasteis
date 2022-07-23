@@ -25,7 +25,7 @@ const User = () => {
         { content: 'Explore', link: '/explore' },
         { content: 'Create', link: '/create' },
         { content: 'About', link: '/about' },
-        { content: 'Username', link: `/user/${walletAddress}`, selected: true },
+        { content: 'Profile', link: `/user/${walletAddress}`, selected: true },
     ];
 
     const topBar = {
