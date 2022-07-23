@@ -76,6 +76,19 @@ let hackathons = [
                 content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
+        moments: [
+            {
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            }
+        ]
     },
     {
         id: 1,
@@ -111,6 +124,19 @@ let hackathons = [
                 content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
+        moments: [
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            }
+        ]
     },
     {
         id: 2,
@@ -145,6 +171,19 @@ let hackathons = [
                 content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
+        moments: [
+            {
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            }
+        ]
     },
     {
         id: 3,
@@ -179,6 +218,19 @@ let hackathons = [
                 content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
+        moments: [
+            {
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            }
+        ]
     },
     {
         id: 4,
@@ -213,6 +265,19 @@ let hackathons = [
                 content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
+        moments: [
+            {
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            }
+        ]
     },
     {
         id: 5,
@@ -247,6 +312,19 @@ let hackathons = [
                 content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
             },
         ],
+        moments: [
+            {
+                title: 'Hackathon start',
+                timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
+            },
+            {
+                title: 'Results announcement', timestamp: 1658491200
+            }
+        ]
     },
 ]
 
@@ -303,4 +381,12 @@ const getPrizes = (hack_id) => {
     });
 }
 
-export { getHackathons, getSignedUpHackathons, getHackathon, getTeam, getAnnouncements, getPrizes };
+const getMoments = (hack_id) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(hackathons[hack_id].moments);
+        }, 300);
+    });
+}
+
+export { getHackathons, getSignedUpHackathons, getHackathon, getTeam, getAnnouncements, getPrizes, getMoments };

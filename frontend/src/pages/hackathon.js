@@ -6,13 +6,14 @@ import HackathonBadge from '../components/hackathonbadge'
 
 import Header from '../components/header'
 import Sticker from '../components/sticker'
-import { getHackathon, getTeam, getAnnouncements, getPrizes } from '../mock/hackathons.js'
+import Timeline from '../components/timeline'
+import { getHackathon, getTeam, getAnnouncements, getPrizes, getMoments } from '../mock/hackathons.js'
 import { parse_date } from '../utils'
 
 const ScheduleSubpage = (props) => {
     const timelineStyle = {
         float: 'left',
-        width: '45%',
+        width: '25%',
         marginLeft: '5%',
         display: 'flex',
         flexDirection: 'column',
@@ -20,10 +21,9 @@ const ScheduleSubpage = (props) => {
 
     const announcementsStyle = {
         float: 'right',
-        width: '45%',
+        width: '70%',
         display: 'flex',
         flexDirection: 'column',
-
     }
 
     const [announcements, setAnnouncements] = useState([])
@@ -31,22 +31,34 @@ const ScheduleSubpage = (props) => {
         setAnnouncements(announcements)
     })
 
+    const [moments, setMoments] = useState([]);
+    getMoments(props.pageid).then((moments) => {
+        setMoments(moments)
+    })
+
     return (
         <div>
-            <div style={timelineStyle}>Timeline</div>
+            <div style={timelineStyle}>
+                <Timeline moments={moments} />
+            </div>
             <div style={announcementsStyle}>
-                {
-                    announcements.map((announcement, index) => {
-                        return (
-                            <Sticker
-                                title={announcement.title}
-                                content={announcement.description}
-                                smallText={parse_date(announcement.date)}
-                                key={index}
-                            />
-                        )
-                    })
-                }
+                <h1>Announcements</h1>
+                <div style={{margin: '-30px auto'}}>
+                    {
+                        announcements.map((announcement, index) => {
+                            return (
+                                <div style={{margin: '30px 0'}}>
+                                <Sticker
+                                    title={announcement.title}
+                                    content={announcement.description}
+                                    smallText={parse_date(announcement.date)}
+                                    key={index}
+                                />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </div>);
 }
@@ -145,9 +157,10 @@ const Hackathon = () => {
     const teamStyle = {
         backgroundColor: '#ECEAE3',
         padding: '10px',
-        border: '1px solid #30323d',
+        boxShadow: '-5px 5px 8px 0 rgba(0, 0, 0, 0.25)',
         borderRadius: '10px',
         textAlign: 'center',
+
     }
 
     const tabsStyle = {
