@@ -157,7 +157,7 @@ const SubmitSubpage = () => {
                             File location
                         </td>
                         <td colSpan="10" style={{textAlign: 'left'}}>
-                            <input type="file" name="upload" onChange={(e) => setFile(e.target.value)} />
+                            <input type="file" style={inputStyle} name="upload" onChange={(e) => setFile(e.target.value)} />
                             </td>
                     </tr>
                 </tbody>
