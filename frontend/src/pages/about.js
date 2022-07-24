@@ -37,13 +37,13 @@ const About = () => {
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         padding: '40px 20px',
-        backgroundColor: '#06D6A0',
+        //backgroundColor: '#06D6A0',
         color: 'black'
     }
 
     const descriptionImage = {
         width: '40%',
-        padding: '30px',
+        padding: '20px',
     }
 
     return (
@@ -58,10 +58,10 @@ const About = () => {
                             textAlign: 'center',
                         }}>
                             <img src={member.image} alt={member.name} style={{
-                                width: '250px',
-                                height: '250px',
+                                width: '150px',
+                                height: '150px',
                                 borderRadius: '100%',
-                                border: '2px dotted #EA8C55',
+                                //border: '2px dotted #EA8C55',
                             }} />
                             <h3>{member.name}</h3>
                             <p>{member.role}</p>
@@ -70,8 +70,8 @@ const About = () => {
                 }
             </div>
             <div style={{
-                backgroundColor: '#26547C',
-                color: 'white',
+                //backgroundColor: '#26547C',
+                color: 'black',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-around',

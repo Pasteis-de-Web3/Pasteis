@@ -7,6 +7,7 @@ import HackathonBadge from '../components/hackathonbadge'
 import Header from '../components/header'
 import Sticker from '../components/sticker'
 import Timeline from '../components/timeline'
+import Project from '../components/project'
 import { getHackathon, getTeam, getAnnouncements, getPrizes, getMoments } from '../mock/hackathons.js'
 import { parse_date, getWallet } from '../utils'
 
@@ -94,12 +95,70 @@ const PrizeSubpage = (props) => {
     );
 }
 
-const FindTeamSubpage = () => {
-    return <p>Find Team</p>
-}
+const CollaborateSubpage = (props) => {
+    
+    const overallGrid = {
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    }
 
-const BrainstormSubpage = () => {
-    return <p>Brainstorm</p>
+    const rowStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    }
+
+    return (
+        <div style={overallGrid}>
+            <h2>Brainstorming Sessions</h2>
+            <div style={rowStyle}>
+                <Sticker
+                    title="Web3 for Social Good"
+                    content="How might we use web3 technologies for social & public goods?"
+                    smallText="10:00 UTC"
+                    key="1"
+                />
+                <Sticker
+                title="De-Social Media"
+                content="How might we create digital spaces that are transparent, open, and decentralized?"
+                smallText="13:00 UTC"
+                key="1"
+                />
+                <Sticker
+                title="NFT for Everyone"
+                content="What's stopping NFTs from reaching the masses? Should we rebrand NFT?"
+                smallText="15:00 UTC"
+                key="1"
+                />
+                <Sticker
+                title="Smart Contract Security"
+                content="How might we make the security auditing process better?"
+                smallText="19:00 UTC"
+                key="1"
+                />
+            </div>
+
+            <h2>Find Team: 1-on-1 Chats</h2>
+            <div style={rowStyle}>
+                <Sticker
+                    title="hi"
+                    content="hello"
+                    smallText="100"
+                    key="1"
+                />
+                <Sticker
+                title="hi"
+                content="hello"
+                smallText="100"
+                key="1"
+                />
+            </div>
+               
+        </div>
+    );
 }
 
 const SubmitSubpage = () => {
@@ -154,17 +213,71 @@ const SubmitSubpage = () => {
                     </tr>
                     <tr>
                         <td colSpan="1" style={leftSideLabelStyle}>
-                            File location
+                            Project Logo
                         </td>
                         <td colSpan="10" style={{ textAlign: 'left' }}>
                             <input type="file" style={inputStyle} name="upload" onChange={(e) => setFile(e.target.value)} />
                         </td>
+                    </tr>
+                    <tr>
+                        <td colSpan="1" style={leftSideLabelStyle}>
+                            Github
+                        </td>
+                        <td colSpan="10"><input style={inputStyle} onChange={(e) => setName(e.target.value)} placeholder="https://github.com/" /></td>
                     </tr>
                 </tbody>
             </table>
             <button onClick={submit} style={submitButtonStyle}>Submit</button>
         </div>
     )
+}
+
+const VoteSubpage = () => {
+    const overallGrid = {
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    }
+
+    const rowStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    }
+
+    return (
+        <div style={overallGrid}>
+            <h2>Projects</h2>
+            <div style={rowStyle}>
+                <Project
+                    title="Pasteis"
+                    content="A decentralized platform for hosting and participating in hackathons with improved transparency in the payment and voting mechanisms of a hackathon."
+                    smallText="team 0x5FC"
+                    key="1"
+                />
+                 <Project
+                    title="Pasteis"
+                    content="A decentralized platform for hosting and participating in hackathons with improved transparency in the payment and voting mechanisms of a hackathon."
+                    smallText="team 0x5FC"
+                    key="1"
+                />
+                 <Project
+                    title="Pasteis"
+                    content="A decentralized platform for hosting and participating in hackathons with improved transparency in the payment and voting mechanisms of a hackathon."
+                    smallText="team 0x5FC"
+                    key="1"
+                />
+                 <Project
+                    title="Pasteis"
+                    content="A decentralized platform for hosting and participating in hackathons with improved transparency in the payment and voting mechanisms of a hackathon."
+                    smallText="team 0x5FC"
+                    key="1"
+                />
+            </div>
+        </div>
+    );
 }
 
 const Hackathon = () => {
@@ -230,9 +343,9 @@ const Hackathon = () => {
     const side_items = [
         { content: 'Schedule', subpage: <ScheduleSubpage pageid={id} /> },
         { content: 'Prizes', subpage: <PrizeSubpage pageid={id} /> },
-        { content: 'Find team', subpage: <FindTeamSubpage pageid={id} /> },
-        { content: 'Brainstorm', subpage: <BrainstormSubpage pageid={id} /> },
+        { content: 'Collaboration', subpage: <CollaborateSubpage pageid={id} /> },
         { content: 'Submit', subpage: <SubmitSubpage pageid={id} /> },
+        { content: 'Vote', subpage: <VoteSubpage pageid={id} /> },
     ]
 
     const [selectedTab, setSelectedTab] = useState(0)
