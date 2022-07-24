@@ -2,11 +2,11 @@ let hackathons = [
     {
         id: 0,
         image: 'https://images.unsplash.com/photo-1552799446-159ba9523315?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-        title: 'Sample hackathon',
-        description: 'This is a sample hackathon',
+        title: 'Ssave the Planet hackathon',
+        description: 'Do you have what it takes to develop the great next solution to climate change?',
         start_date: 1658318400,
         end_date: 1658491200,
-        prizeSum: "$1M ETH",
+        prizeSum: "$50k ETH",
         announcements: [
             {
                 title: 'Sample announcement',
@@ -102,10 +102,9 @@ let hackathons = [
     },
     {
         id: 1,
-        image: 'https://images.unsplash.com/photo-1483825366482-1265f6ea9bc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-        title: "Sample hackathon with a very long title that is so massive it won't fit very well",
-        description:
-            "This is a sample hackathon with also a description so huge that it is expected to be causing troubles in the interface. I don't know if we should be actually caring much about this but i think it would be nice to make it look good",
+        image: 'https://forkast.news/wp-content/uploads/2021/12/polygon-1260x709.jpg',
+        title: 'Polygon hackathon',
+        description: 'Come develop on the Polygon chain!',
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
@@ -113,7 +112,7 @@ let hackathons = [
             {
                 id: 0,
                 title: 'Sample announcement',
-                description: 'This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. This is a sample announcement. Announcements can be long and contain multiple lines of text displaying. It is useful to notify participants of updates. ',
+                description: 'This is a sample announcement',
                 date: 1658318400,
             },
         ],
@@ -136,12 +135,12 @@ let hackathons = [
         ],
         moments: [
             {
-                title: 'Hackathon end, Voting start',
-                timestamp: 1658491200,
-            },
-            {
                 title: 'Hackathon start',
                 timestamp: 1658318400,
+            },
+            {
+                title: 'Hackathon end, Voting start',
+                timestamp: 1658491200,
             },
             {
                 title: 'Results announcement', timestamp: 1658491200
@@ -150,56 +149,42 @@ let hackathons = [
     },
     {
         id: 2,
-        image: 'https://forkast.news/wp-content/uploads/2021/12/polygon-1260x709.jpg',
-        title: 'Polygon hackathon',
-        description: 'This is a sample hackathon',
-        start_date: 1658318400,
-        end_date: 1658491200,
-        prizeSum: "$1M ETH",
+        image: 'https://www.opservices.com.br/wp-content/uploads/2017/01/Hackathon.png',
+        title: 'HackFS 2022',
+        description: 'Demonstration of pasteis',
+        start_date: 1658685324000,
+        end_date: 1658771724000,
+        prizeSum: "0.001 ETH",
         announcements: [
             {
                 id: 0,
-                title: 'Sample announcement',
-                description: 'This is a sample announcement',
-                date: 1658318400,
-            },
+                title: 'Start announcement',
+                description: 'Hackathon has begun!',
+                date: 1658685324000,
+            }
         ],
         prizes: [
             {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
+                name: 'First prize',
+                value: '0.001 ETH',
+            }
         ],
         moments: [
             {
                 title: 'Hackathon start',
-                timestamp: 1658318400,
+                timestamp: 1658685324000,
             },
             {
                 title: 'Hackathon end, Voting start',
-                timestamp: 1658491200,
+                timestamp: 1658771724000,
             },
-            {
-                title: 'Results announcement', timestamp: 1658491200
-            }
         ]
     },
     {
         id: 3,
         image: 'https://protocol.ai/images/og-default.jpg',
         title: 'ProtocolAI hackathon',
-        description: 'This is a sample hackathon',
+        description: 'Develop your app and show us the great result!',
         start_date: 1658318400,
         end_date: 1658491200,
         prizeSum: "$1M ETH",
@@ -240,100 +225,6 @@ let hackathons = [
             {
                 title: 'Results announcement', timestamp: 1658491200
             },
-        ]
-    },
-    {
-        id: 4,
-        image: 'https://www.opservices.com.br/wp-content/uploads/2017/01/Hackathon.png',
-        title: 'Jayee\'s hackathon',
-        description: 'This is a sample hackathon',
-        start_date: 1658318400,
-        end_date: 1658491200,
-        prizeSum: "$1M ETH",
-        announcements: [
-            {
-                id: 0,
-                title: 'Sample announcement',
-                description: 'This is a sample announcement',
-                date: 1658318400,
-            },
-        ],
-        prizes: [
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-        ],
-        moments: [
-            {
-                title: 'Hackathon start',
-                timestamp: 1658318400,
-            },
-            {
-                title: 'Hackathon end, Voting start',
-                timestamp: 1658491200,
-            },
-            {
-                title: 'Results announcement', timestamp: 1658491200
-            }
-        ]
-    },
-    {
-        id: 5,
-        image: 'https://www.opservices.com.br/wp-content/uploads/2017/01/Hackathon.png',
-        title: 'Evy\'s hackathon',
-        description: 'This is a sample hackathon',
-        start_date: 1658318400,
-        end_date: 1658491200,
-        prizeSum: "$1M ETH",
-        announcements: [
-            {
-                id: 0,
-                title: 'Sample announcement',
-                description: 'This is a sample announcement',
-                date: 1658318400,
-            },
-        ],
-        prizes: [
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-            {
-                name: 'Sample prize',
-                value: '69 USD',
-                content: 'This is a sample prize. Prizes can be long and contain multiple lines of text displaying. It is useful to notify participants of updates.',
-            },
-        ],
-        moments: [
-            {
-                title: 'Hackathon start',
-                timestamp: 1658318400,
-            },
-            {
-                title: 'Hackathon end, Voting start',
-                timestamp: 1658491200,
-            },
-            {
-                title: 'Results announcement', timestamp: 1658491200
-            }
         ]
     },
 ]
