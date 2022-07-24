@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import Header from '../components/header';
-import { connect } from "@tableland/sdk";
 import { getWallet } from '../utils';
+import Web3 from 'web3/dist/web3.min.js'
+import HackathonJSON from '../ABIs/HackathonFactory.json'
+
+const HackathonFactoryContractAddress = "0x67017A7F2dEa6AC087a92994eF16e83421dBE55f" // Goerli
 
 const Create = () => {
 
@@ -77,6 +80,18 @@ const Create = () => {
     const [prizes, setPrizes] = useState([{ name: '', value: '' }])
     const [moments, setMoments] = useState([])
 
+    const submitFn = async () => {
+        console.log('Submit')
+        console.log(name, description, startDate, endDate, prizes)
+
+        let provider = window.ethereum;
+        const web3 = new Web3(provider);
+        const networkId = await web3.eth.net.getId();
+        const HackathonFactoryContract = new web3.eth.Contract(HackathonJSON.abi, HackathonFactoryContractAddress)
+
+        HackathonFactoryContract.methods.create(web3.utils.toWei("0.001", 'ether'), 36000, name, description, walletAddress, 1, startDate+" "+endDate).send({from: walletAddress, value: web3.utils.toWei("0.001", 'ether')})
+    }
+ 
     const addPrize = () => {
         setPrizes([...prizes, { name: '', value: '' }])
     }
@@ -109,11 +124,7 @@ const Create = () => {
         textAlign: 'center',
     }
 
-    const submitFn = () => {
-        console.log('Submit')
-        console.log(name, description, startDate, endDate, prizes)
-
-    }
+   
 
     return (
         <>
