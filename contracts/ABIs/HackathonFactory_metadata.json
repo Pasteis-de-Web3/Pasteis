@@ -1,0 +1,262 @@
+{
+	"compiler": {
+		"version": "0.8.12+commit.f00d7308"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "HackthonAdded",
+						"type": "address"
+					}
+				],
+				"name": "newHackathonCreation",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_hackathonAddy",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_projectOwner",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_projectName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_projectLink",
+						"type": "string"
+					}
+				],
+				"name": "AddProject",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "duration_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_hackathon_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_organizer",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_total_prize",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_date",
+						"type": "string"
+					}
+				],
+				"name": "create",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getHackathonAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getNumDeployedHackathons",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "hackathons",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"github/Pasteis-de-Web3/Pasteis/hackathonFactory.sol": "HackathonFactory"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/utils/Strings.sol": {
+			"keccak256": "0xaf159a8b1923ad2a26d516089bceca9bdeaeacd04be50983ea00ba63070f08a3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6f2cf1c531122bc7ca96b8c8db6a60deae60441e5223065e792553d4849b5638",
+				"dweb:/ipfs/QmPBdJmBBABMDCfyDjCbdxgiqRavgiSL88SYPGibgbPas9"
+			]
+		},
+		"@tableland/evm/contracts/ITablelandController.sol": {
+			"keccak256": "0xda5f7e8144be7322e66e0f6652e040d2e8409345843d225efdd11adf05cddf1d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://575855cf857ee601043a74a35ca5f0bd971c4d275b9de883189f8391d23ac1b5",
+				"dweb:/ipfs/QmadkwWXiQTicYnYsCPyW5fY2gGjCDbc9NVn4iWMEcoKZr"
+			]
+		},
+		"@tableland/evm/contracts/ITablelandTables.sol": {
+			"keccak256": "0xd8f2b5571885cec2b5109d1a3f9c13afe7925c4dbe995c4cd5658b490fed2a7d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4400dfea5607a8680bbd4741618a2a15fe99b269761d0922cc8fcf2a14e1e430",
+				"dweb:/ipfs/QmWb118uyQ8vfpH5cR3h49CK5mAACkiTnURGBoia44KjPw"
+			]
+		},
+		"github/Pasteis-de-Web3/Pasteis/hackathon.sol": {
+			"keccak256": "0xc5a6e6d2068d482833d44041083d4d8c4bb18d6870d380bd3bf8b23e2f5531f5",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://47475617920662f639584ec4c9021b7b191a637c623f5b8510251c58c88671d2",
+				"dweb:/ipfs/QmSKuSpmYT5LYngxDTELfWx2HirBgS3EQzApVeGHUskCmv"
+			]
+		},
+		"github/Pasteis-de-Web3/Pasteis/hackathonFactory.sol": {
+			"keccak256": "0x8434a2e1469a918cee6736a6a3ad1283c2a2060d25d412accdd3faa6143b677b",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5caf4f2bf37d189508daf3fc209a22028378dbecd81330d8f76f587b9f166215",
+				"dweb:/ipfs/QmagWkBi9J1gz93GdBq8nsgrfBe13tD6cndGPn7Y4sS2zh"
+			]
+		},
+		"openzeppelin-solidity/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34",
+				"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr"
+			]
+		}
+	},
+	"version": 1
+}
