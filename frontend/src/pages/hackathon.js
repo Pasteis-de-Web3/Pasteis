@@ -6,7 +6,6 @@ import HackathonBadge from '../components/hackathonbadge'
 import Web3 from 'web3/dist/web3.min.js'
 import HackathonJSON from '../ABIs/HackathonFactory.json'
 
-const HackathonFactoryContractAddress = "0x67017A7F2dEa6AC087a92994eF16e83421dBE55f" // Goerli
 
 import Header from '../components/header'
 import Sticker from '../components/sticker'
@@ -14,6 +13,9 @@ import Timeline from '../components/timeline'
 import Project from '../components/project'
 import { getHackathon, getTeam, getAnnouncements, getPrizes, getMoments } from '../mock/hackathons.js'
 import { parse_date, getWallet } from '../utils'
+
+const HackathonFactoryContractAddress = "0x67017A7F2dEa6AC087a92994eF16e83421dBE55f" // Goerli
+
 
 const ScheduleSubpage = (props) => {
     const timelineStyle = {
@@ -170,6 +172,12 @@ const SubmitSubpage = () => {
     const [description, setDescription] = useState('')
     const [file, setFile] = useState('')
 
+    const [walletAddress, setWallet] = useState(null);
+
+    useEffect(() => {
+        getWallet().then(walletId => setWallet(walletId));
+    }, [])
+
     const inputStyle = {
         width: '100%',
         backgroundColor: '#EDEFF2',
@@ -192,14 +200,15 @@ const SubmitSubpage = () => {
         cursor: 'pointer'
     }
 
-    const submit = () => {
+    const submit = async () => {
+        
         console.log(name, description, file)
         let provider = window.ethereum;
         const web3 = new Web3(provider);
         const networkId = await web3.eth.net.getId();
         const HackathonFactoryContract = new web3.eth.Contract(HackathonJSON.abi, HackathonFactoryContractAddress)
 
-        HackathonFactoryContract.methods.create(web3.utils.toWei("0", 'ether'), 36000, name, description, walletAddress, 0, startDate+" "+endDate).send({from: walletAddress, value: web3.utils.toWei("0", 'ether')})
+        HackathonFactoryContract.methods.create(web3.utils.toWei("0", 'ether'), 36000, "hi", "description", walletAddress, 0, "date").send({from: walletAddress, value: web3.utils.toWei("0", 'ether')})
     }
 
     return (
