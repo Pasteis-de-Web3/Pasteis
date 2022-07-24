@@ -2,7 +2,7 @@ let hackathons = [
     {
         id: 0,
         image: 'https://images.unsplash.com/photo-1552799446-159ba9523315?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-        title: 'Ssave the Planet hackathon',
+        title: 'Save the Planet hackathon',
         description: 'Do you have what it takes to develop the great next solution to climate change?',
         start_date: 1658318400,
         end_date: 1658491200,
