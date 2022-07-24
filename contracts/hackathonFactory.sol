@@ -3,19 +3,18 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "./hackathon.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@tableland/evm/contracts/ITablelandTables.sol";
 
 contract HackathonFactory{
+    // // This function is called for plain Ether transfers, i.e.
+    // // for every call with empty calldata.
+    receive() external payable { }
+    fallback() external payable {}  
 
     address[] public hackathons;
     uint id;
-    uint256 pAmount;
-    uint256 fees;
-    uint256 totalAmount;
+
     
     //tableland setups
     ITablelandTables private _tableland;
@@ -30,13 +29,16 @@ contract HackathonFactory{
     //announcements
     event newHackathonCreation(uint id, address HackthonAdded);
 
-    constructor(){
+    constructor() payable {
 
     /* 
       * The Tableland address on your current chain
       */
       //Tableland Polygon Mumbai Testnet contract
-      address registry = address(0x4b48841d4b32C4650E4ABc117A03FE8B51f38F68); 
+      // address registry = address(0x4b48841d4b32C4650E4ABc117A03FE8B51f38F68); 
+      //ETh Goerli testnet address
+      address registry = address(0xDA8EA22d092307874f30A1F277D1388dca0BA97a); 
+
       _tableland = ITablelandTables(registry);
 
       /*
@@ -101,27 +103,25 @@ contract HackathonFactory{
         string memory _hackathon_name,
         string memory _description,
         string memory _organizer,
-        string memory _total_prize,
+        uint256 _total_prize,
         string memory _date
         ) public payable returns(address, uint){
         
-        //5% of payment amount is collected as process fees
-        pAmount = amount * 10**18;
-        fees = (5 * pAmount)/100;
-        totalAmount = fees+ amount;
+        // pAmount = amount * 10**18;
 
         id = hackathons.length;
         require(msg.sender.balance >= amount, "HackathonFactory: insufficient funds.");
-        require(msg.value == totalAmount, "HackathonFactory: Unmatching funds.");
+        require(msg.value == amount, "HackathonFactory: Unmatching funds.");
 
 
         //create new task and add to the array
         //uint HID, uint _duration, uint256 amount
-        Hackathon newhackathon = new Hackathon(id, duration_, pAmount);
-        payable(address(newhackathon)).transfer(pAmount);
-
+        Hackathon newhackathon = new Hackathon(id, duration_, amount, msg.sender);
+        payable(address(newhackathon)).transfer(amount);
         hackathons.push(address(newhackathon));
-        //" (id int, hackathonAdd tinytext, hackathon_name tinytext, description text, organizer tinytext, total_prize int, date tinytext);"
+
+
+        // " (id int, hackathonAdd tinytext, hackathon_name tinytext, description text, organizer tinytext, total_prize int, date tinytext);"
         //add new hackthon to tableland
         _tableland.runSQL(
         address(this),
@@ -135,7 +135,7 @@ contract HackathonFactory{
             _hackathon_name, ",",
             _description,",",
             _organizer,",",
-            _total_prize,",",
+            Strings.toString(_total_prize),",",
             _date,
              ")" 
              //should be the format below
