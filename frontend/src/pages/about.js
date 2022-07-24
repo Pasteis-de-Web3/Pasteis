@@ -27,7 +27,7 @@ const About = () => {
     const members = [
         { name: 'Tiago Antunes', role: 'Frontend Developer', image: TiagoPic },
         { name: 'Samuel Tang', role: 'Fullstack Developer', image: SamPic },
-        { name: 'Jiayi Li', role: 'Solidity Developer', image: JayeePic },
+        { name: 'Jayee Li', role: 'Solidity Developer', image: JayeePic },
         { name: 'Evy Pinero', role: 'Designer', image: EvyPic },
     ]
 

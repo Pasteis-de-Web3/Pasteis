@@ -272,7 +272,7 @@ const VoteSubpage = () => {
             <div style={rowStyle}>
                 <Project
                     title="Pasteis"
-                    content="A decentralized platform for hosting and participating in hackathons with improved transparency in the payment and voting mechanisms of a hackathon."
+                    content="Demonstration"
                     smallText="team 0x5FC"
                     key="1"
                 />

@@ -151,7 +151,7 @@ let hackathons = [
         id: 2,
         image: 'https://www.opservices.com.br/wp-content/uploads/2017/01/Hackathon.png',
         title: 'HackFS 2022',
-        description: 'Demonstration of pasteis',
+        description: 'Demonstration',
         start_date: 1658685324000,
         end_date: 1658771724000,
         prizeSum: "0.001 ETH",
