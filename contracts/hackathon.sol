@@ -2,9 +2,14 @@
 // SPDX-License-Identifier: GPL-3.0
 
 pragma solidity >=0.8.0 <0.9.0;
+import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 
 
 contract Hackathon{
+    // // This function is called for plain Ether transfers, i.e.
+    // // for every call with empty calldata.
+    receive() external payable { }
+    fallback() external payable {}  
 
     //declare required variables
     // address payable [] public hackers;
@@ -27,7 +32,7 @@ contract Hackathon{
     struct Proposal {
         // If you can limit the length to a certain number of bytes, 
         // always use one of bytes1 to bytes32 because they are much cheaper
-        bytes32 name;   // short name (up to 32 bytes)
+        string name;   // short name (up to 32 bytes)
         uint voteCount; // number of accumulated votes
         address owner; //owner of this project
     }
@@ -36,9 +41,9 @@ contract Hackathon{
     mapping(address => Voter) public hackers;
     Proposal[] public proposals;
 
-    constructor(uint HID, uint _duration, uint256 amount){
+    constructor(uint HID, uint _duration, uint256 amount, address _organizer) payable {
         hackID = HID;
-        hackathonOwner = msg.sender;
+        hackathonOwner = _organizer;
         hackOpen = true;
         prizeAmount = amount;
         //set timer
@@ -54,12 +59,12 @@ contract Hackathon{
     function fundHack(uint256 amount) public payable{
         prizeAmount = prizeAmount + amount * 10**18;        
         require(msg.sender.balance >= amount, "Pasteis: insufficient funds.");
-        require(msg.value == amount, "Pasteis: Unmatching funds.");
+        require(msg.value == prizeAmount, "Pasteis: Unmatching funds.");
     }
 
     //Participants
     //frontend calls
-    function submission(address hacker, bytes32 proposalName ) public{
+    function submission(address hacker, string memory proposalName ) public{
         if(block.timestamp >= _end){
             hackOpen = false;
 
@@ -125,7 +130,7 @@ contract Hackathon{
     // Calls winningProposal() function to get the index
     // of the winner contained in the proposals array and then
     // returns the name of the winner proposal
-    function winnerName() public view returns (bytes32 winnerName_)
+    function winnerName() public view returns (string memory winnerName_)
     {
         winnerName_ = proposals[winningProposal()].name;
     }
