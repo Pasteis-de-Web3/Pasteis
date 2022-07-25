@@ -67,7 +67,6 @@ contract Hackathon{
     function submission(address hacker, string memory proposalName ) public{
         if(block.timestamp >= _end){
             hackOpen = false;
-
         }
         require(hackOpen == true, "Pasteis: Hackathon is closed.");
 

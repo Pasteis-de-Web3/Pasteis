@@ -65,7 +65,7 @@ export default class Project extends React.Component {
                 <div style={contentStyle}>
                     {this.props.content}
                     <div style={voteStyle}>
-                        <button style={buttonStyle}>vote</button>
+                        <button style={buttonStyle} onClick={this.props.vote}>vote</button>
                     </div>
                 </div>
 

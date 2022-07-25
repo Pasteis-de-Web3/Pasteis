@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 import Header from '../components/header';
 import HackathonCard from '../components/hackathoncard';
+import { connect } from "@tableland/sdk"
 
 import { getHackathons, getSignedUpHackathons } from '../mock/hackathons.js';
 import { getWallet } from '../utils';
 
-const Explore = () => {
 
+const Explore = () => {
     const [walletAddress, setWallet] = useState(null);
 
-    useEffect(() => {
+    useEffect(async () => {
+        const tableland = await connect({ network: "testnet", chain: "ethereum-goerli" });
         getWallet().then(walletId => setWallet(walletId));
+        tableland.read(`SELECT * FROM Pasteis_5_700`).then((value) => console.log(value)) // would need to get table name from smart contracts
     }, [])
 
     const header_items = [
@@ -25,14 +28,14 @@ const Explore = () => {
     let [hackathon_stub, setHackathonStub] = useState([]);
 
     getHackathons().then((hackathons) => {
-        console.log(hackathons);
+        //console.log(hackathons);
         setHackathonStub(hackathons);
     }).catch((err) => {
         console.log(err);
     })
 
     getSignedUpHackathons().then((hackathons) => {
-        console.log(hackathons);
+        //console.log(hackathons);
         setEnrolledHackathons(hackathons);
     }).catch((err) => {
         console.log(err);

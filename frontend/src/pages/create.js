@@ -13,6 +13,7 @@ const Create = () => {
 
     useEffect(() => {
         getWallet().then(walletId => setWallet(walletId));
+        listenToEvents();
     }, [])
 
     const header_items = [
@@ -79,6 +80,8 @@ const Create = () => {
     const [endDate, setEndDate] = useState('')
     const [prizes, setPrizes] = useState([{ name: '', value: '' }])
     const [moments, setMoments] = useState([])
+    const [newTaskContractAddress, setNewTaskContractAddress] = useState(''); 
+
 
     const submitFn = async () => {
         console.log('Submit')
@@ -86,10 +89,27 @@ const Create = () => {
 
         let provider = window.ethereum;
         const web3 = new Web3(provider);
-        const networkId = await web3.eth.net.getId();
         const HackathonFactoryContract = new web3.eth.Contract(HackathonJSON.abi, HackathonFactoryContractAddress)
 
-        HackathonFactoryContract.methods.create(web3.utils.toWei("0.001", 'ether'), 36000, name, description, walletAddress, 1, startDate+" "+endDate).send({from: walletAddress, value: web3.utils.toWei("0.001", 'ether')})
+        HackathonFactoryContract.methods.create(web3.utils.toWei("0.0001", 'ether'), 864000, name, description, walletAddress, 1, startDate+" "+endDate).send({from: walletAddress, value: web3.utils.toWei("0.0001", 'ether')})
+    }
+
+    const listenToEvents = async () => {
+        let provider = window.ethereum;
+        const web3 = new Web3(provider);
+        const HackathonFactoryContract = new web3.eth.Contract(HackathonJSON.abi, HackathonFactoryContractAddress)
+
+        HackathonFactoryContract.events.allEvents(
+            { fromBlock: 'latest', }, 
+            (error, event) => {
+                if (error)
+                    console.log("error while subscribing to event")
+                console.log('event: ', event);
+                setNewTaskContractAddress(event.returnValues[1]);
+                //sendTaskInfoBack();
+                console.log(newTaskContractAddress)
+            }
+        );
     }
  
     const addPrize = () => {

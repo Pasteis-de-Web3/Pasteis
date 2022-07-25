@@ -4,7 +4,7 @@ import {
 } from "react-router-dom"
 import HackathonBadge from '../components/hackathonbadge'
 import Web3 from 'web3/dist/web3.min.js'
-import HackathonJSON from '../ABIs/HackathonFactory.json'
+import HackathonJSON from '../ABIs/Hackathon.json'
 
 
 import Header from '../components/header'
@@ -13,8 +13,29 @@ import Timeline from '../components/timeline'
 import Project from '../components/project'
 import { getHackathon, getTeam, getAnnouncements, getPrizes, getMoments } from '../mock/hackathons.js'
 import { parse_date, getWallet } from '../utils'
+import { Web3Storage } from 'web3.storage'
 
-const HackathonFactoryContractAddress = "0x67017A7F2dEa6AC087a92994eF16e83421dBE55f" // Goerli
+function getAccessToken () {
+  return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDY2NDcwNzg5OWY2RjY2QTM1Zjk5YzEzMDhiYTk4MUVlNDgzMjUxNTEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTg3MjIxNzc1MDIsIm5hbWUiOiIgUGFzdGVpcyJ9.MP4bxE6QgPEKjHWpHJ-g-BNIYXCmne41fHOfNFfWPw4'
+}
+
+function makeStorageClient () {
+  return new Web3Storage({ token: getAccessToken() })
+}
+
+async function storeFiles (files) {
+    const client = makeStorageClient()
+    const cid = await client.put(files)
+    console.log('stored files with cid:', cid)
+    return cid
+}
+
+function getFiles () {
+    const fileInput = document.querySelector('input[type="file"]')
+    return fileInput.files
+}
+
+const HackathonContractAddress = "0xcAD78aF7D07392F1e0B1B57F58D90D42178Ba70e" // Goerli
 
 
 const ScheduleSubpage = (props) => {
@@ -206,9 +227,15 @@ const SubmitSubpage = () => {
         let provider = window.ethereum;
         const web3 = new Web3(provider);
         const networkId = await web3.eth.net.getId();
-        const HackathonFactoryContract = new web3.eth.Contract(HackathonJSON.abi, HackathonFactoryContractAddress)
+        const HackathonContract = new web3.eth.Contract(HackathonJSON.abi, HackathonContractAddress)
 
-        HackathonFactoryContract.methods.create(web3.utils.toWei("0", 'ether'), 36000, "hi", "description", walletAddress, 0, "date").send({from: walletAddress, value: web3.utils.toWei("0", 'ether')})
+        HackathonContract.methods.submission(walletAddress, name).send({from: walletAddress})
+    }
+
+    const uploadLogo = async () => {
+        const files = getFiles()
+        console.log(files)
+        storeFiles(files)
     }
 
     return (
@@ -235,7 +262,7 @@ const SubmitSubpage = () => {
                             Project Logo
                         </td>
                         <td colSpan="10" style={{ textAlign: 'left' }}>
-                            <input type="file" style={inputStyle} name="upload" onChange={(e) => setFile(e.target.value)} />
+                            <input type="file" style={inputStyle} name="upload" onChange={uploadLogo} />
                         </td>
                     </tr>
                     <tr>
@@ -266,6 +293,22 @@ const VoteSubpage = () => {
         justifyContent: 'center',
     }
 
+    const [walletAddress, setWallet] = useState(null);
+
+    useEffect(() => {
+        getWallet().then(walletId => setWallet(walletId));
+    }, [])
+
+
+    const vote = async () => {
+        let provider = window.ethereum;
+        const web3 = new Web3(provider);
+        const HackathonContract = new web3.eth.Contract(HackathonJSON.abi, HackathonContractAddress)
+
+        HackathonContract.methods.vote(0).send({from: walletAddress})
+    }
+
+
     return (
         <div style={overallGrid}>
             <h2>Projects</h2>
@@ -275,6 +318,7 @@ const VoteSubpage = () => {
                     content="Demonstration"
                     smallText="team 0x5FC"
                     key="1"
+                    vote={vote}
                 />
             </div>
         </div>
