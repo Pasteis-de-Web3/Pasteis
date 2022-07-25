@@ -6,8 +6,14 @@ Pasteis a decentralized hackathon platform aims to make the hackathon experience
 YouTube Demo Video: https://youtu.be/zmUg20iNtJU   
 EthGlobal Homepage: https://ethglobal.com/showcase/pasteis-de-web3-bza80  
 
-## Our Team & Intro
+## Our Team
 ![about](./images/about.png)
+
+## Our Project
+![problem](./images/problem.png)
+![solution](./images/solution.png)
+![user](./images/user_story.png)
+![tech](./images/tech.png)
 
 ## Product Design
 ![landing](./images/landing.png)
@@ -22,4 +28,8 @@ EthGlobal Homepage: https://ethglobal.com/showcase/pasteis-de-web3-bza80
 ![collab](./images/hackathon-collab.png)
 ![submit](./images/hackathon-submit.png)
 ![vote](./images/hackathon-vote.png)
+
+## Next Steps
+![next_step](./images/next_step.png)
+
 
